@@ -1,7 +1,258 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+Twenty by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Twenty by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+
+<body class="index">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+
+
+
+
+
+        <!-- Main -->
+        <article id="main">
+            <section class="wrapper style3 container special xtra">
+                <ul>
+                    <li id="logo">
+                        <img src="images/logo.png" style="width:110px">
+                    </li>
+
+                    <li><button id="logout">Log Out</button></li>
+                    <li><button id="settings">Settings</button></li>
+                </ul>
+            </section>
+            <!-- Three -->
+            <section class="wrapper style3 container special">
+
+                <header class="major">
+                    <h2>
+                        <!--[-->
+                        <!--]--><strong><!--[-->Patients<!--]--></strong></h2>
+                </header>
+
+                <table id="patientTable" style="width:100%">
+                    <tr>
+                        <th></th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date of Birth</th>
+                    </tr>
+                    <tr class="patientrow" id="template" style="position: absolute;
+    left: -9999px;">
+                        <td>
+                            <div class="pic"></div>
+                        </td>
+                        <td class="firstname"></td>
+                        <td class="lastname"></td>
+                        <td class="dob"></td>
+                    </tr>
+                </table>
+
+
+                <!--
+                    <footer class="major">
+                        <ul class="buttons">
+                            <li><a href="#" class="button">See More</a></li>
+                        </ul>
+                    </footer>
+-->
+
+            </section>
+
+            <section class="wrapper style3 container special">
+                <header class="major">
+                    <h3>
+                        <!--[-->
+                        <!--]--><strong><!--[-->Adding Patients<!--]--></strong></h3>
+                </header>
+                <div class="row code">
+
+                    <h1>Physician Code: </h1>
+                    <h1 id="code"></h1>
+                </div>
+                <p>Give your patients the code above. After they create their account, they will appear in your list of patients above. Can't see your patient? Click Here</p>
+            </section>
+
+        </article>
+
+
+        <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
+                authDomain: "medreporting-3da68.firebaseapp.com",
+                databaseURL: "https://medreporting-3da68.firebaseio.com",
+                projectId: "medreporting-3da68",
+                storageBucket: "medreporting-3da68.appspot.com",
+                messagingSenderId: "212915452033"
+            };
+            firebase.initializeApp(config);
+
+        </script>
+
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollgress.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+
+    <style>
+            .code {
+            text-align: center;
+        }
+        
+        .code h1 {
+            text-align: center;
+        }
+        
+        td {
+            text-align: center;
+            align-content: center;
+            vertical-align: middle;
+        }
+        
+        .patientrow {
+            height: 100px;
+        }
+        
+        .patientrow:hover {
+            background: lightgrey;
+            border-radius: 10px;
+        }
+        
+        .pic {
+            background-image: url(images/user.png);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+
+            $("#logout").click(function() {
+                firebase.auth().signOut().then(function() {
+                    location.href = "login.html"
+                }, function(error) {
+                    // An error happened.
+                });
+
+            });
+
+            var patients = []
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+
+
+
+                    //set physician code
+                    firebase.database().ref("Users/" + user.uid).once('value').then(function(snapshot) {
+                        $("#code").text(snapshot.val().code);
+                    });
+
+                    //get patients
+                    firebase.database().ref("Physicians/" + user.uid).once('value').then(function(snapshot) {
+                        snapshot.forEach(function(child) {
+
+                            patients.forEach(function(item) {
+                                var iid = new String(item.id);
+                                var oid = new String(patient.id);
+
+                                if (iid === oid) {
+                                    console.log("YES");
+                                }
+                            });
+
+                            firebase.database().ref("Users/" + child.val().id).once('value').then(function(snapshot) {
+
+                                var val = snapshot.val();
+                                var patient = {
+                                    dob: val.dob,
+                                    first_name: val.first_name,
+                                    last_name: val.last_name,
+                                    id: child.val().id
+                                };
+
+
+                                patients.push(patient);
+                                var patientIndex = patients.indexOf(patient);
+
+
+                                let patientHTML = $("#template").clone();
+                                patientHTML.attr('id', patientIndex);
+                                patientHTML.css("position", "relative");
+                                patientHTML.find(".firstname").text(patient.first_name);
+                                patientHTML.find(".lastname").text(patient.last_name);
+                                patientHTML.find(".dob").text(patient.dob);
+
+                                $("#patientTable").append(patientHTML);
+
+
+
+                                patientHTML.click(function(event) {
+                                    var id = $(this).attr('id');
+                                    //alert(patients[id].id);
+                                    sessionStorage.setItem("patient", patients[id].id)
+
+                                    window.location.href = "readings.html"
+                                });
+
+
+
+                            });
+                        });
+
+                        //                        for item in snapshot.val() {
+                        //                            console.log(item);
+                        //                        }
+                    });
+
+
+                } else {
+                    location.href = "login.html"
+                }
+            });
+
+        });
+
+
+        //patientrow
+
+    </script>
+
 </body>
+
 </html>

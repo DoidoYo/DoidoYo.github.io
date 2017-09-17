@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<!--
+Twenty by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Twenty by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+
+<body class="index">
+    <div id="page-wrapper">
+        <!-- Main -->
+        <article id="main">
+
+            <img src="images/logo.png" id="logo" style="width:140px">
+
+            <!-- One -->
+            <section class="wrapper style4 special container 75% login">
+
+                <!-- Content -->
+                <div class="content">
+                    <h2>Sign up</h2>
+                    <form onsubmit="return false">
+                        <div class="row 50%">
+                            <div class="12u">
+                                <input type="text" id="email" name="email" placeholder="Email" />
+                            </div>
+                        </div>
+                        <div class="row 50%">
+                            <div class="12u">
+                                <input type="password" id="password" name="email" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div class="row 50%">
+                            <div class="12u">
+                                <input type="text" id="firstname" name="First Name" placeholder="First Name" />
+                            </div>
+                        </div>
+                        <div class="row 50%">
+                            <div class="12u">
+                                <input type="text" id="lastname" name="Last Name" placeholder="Last Name" />
+                            </div>
+                        </div>
+                        <div class="row 50%">
+                            <div class="12u">
+                                <input type="text" id="dob" name="DOB" placeholder="Date of Birth" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="12u">
+                                <ul class="buttons">
+
+                                    <li><input type="submit" class="special" id="signup" value="Sign up" /></li>
+
+
+                                </ul>
+                                <ul class="buttons">
+                                    <li><a href="login.html" class="button special">Login</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+
+        </article>
+
+
+
+    </div>
+
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        @media screen and (max-width: 736px) main.css:3151 body.index #main {
+            padding: 1em 0 0 0;
+        }
+        
+        @media screen and (max-width: 840px) main.css:2810 body.index #main {
+            padding-top: 1em;
+        }
+        
+        main.css:2487 body.index #main {
+            padding-top: 1em;
+        }
+        
+        #logo {
+            text-align: center;
+        }
+
+    </style>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
+            authDomain: "medreporting-3da68.firebaseapp.com",
+            databaseURL: "https://medreporting-3da68.firebaseio.com",
+            projectId: "medreporting-3da68",
+            storageBucket: "medreporting-3da68.appspot.com",
+            messagingSenderId: "212915452033"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollgress.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+
+
+
+    <script>
+        $(document).ready(function() {
+            $("#signup").click(function() {
+
+                var email = $("#email").val();
+                var password = $("#password").val();
+                var firstname = $("#firstname").val();
+                var lastname = $("#lastname").val();
+                var dob = $("#dob").val();
+
+                firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                    // ...
+                });
+            });
+
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+
+
+                    var firstname = $("#firstname").val();
+                    var lastname = $("#lastname").val();
+                    var dob = $("#dob").val();
+
+                    var id = makeid();
+
+                    firebase.database().ref('Users/' + user.uid).set({
+                        dob: dob,
+                        first_name: firstname,
+                        last_name: lastname,
+                        code: id
+                    }, function(err) {
+                        if (err) {
+
+                        } else {
+                            location.href = "index.html"
+                        }
+                    });
+
+                }
+            });
+        });
+
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
+
+    </script>
+
+</body>
+
+</html>

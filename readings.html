@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<!--
+Twenty by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Twenty by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/navbar.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+
+<body class="index">
+    <div id="page-wrapper">
+
+        <!-- Main -->
+        <article id="main">
+
+            <section class="wrapper style3 container special xtra">
+                <ul>
+                    <li id="logo">
+                        <img src="images/logo.png" style="width:110px">
+                    </li>
+
+                    <li><button id="logout">Log Out</button></li>
+                    <li><button id="settings">Settings</button></li>
+                </ul>
+            </section>
+            <section class="wrapper style3 container special">
+
+
+                <div class="pic"></div>
+                <hr>
+                <h3 id="name"></h3>
+
+                <hr>
+
+                <div class="row">
+                    <h1>Date of birth: </h1>
+                    <h1 id="dob"></h1>
+                </div>
+
+                <div id="myDiv">
+
+
+            </section>
+
+
+        </article>
+
+
+        <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
+                authDomain: "medreporting-3da68.firebaseapp.com",
+                databaseURL: "https://medreporting-3da68.firebaseio.com",
+                projectId: "medreporting-3da68",
+                storageBucket: "medreporting-3da68.appspot.com",
+                messagingSenderId: "212915452033"
+            };
+            firebase.initializeApp(config);
+
+        </script>
+        <!-- Footer 
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/jquery.scrollgress.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+        <style>
+                .pic {
+                background-image: url(images/user.png);
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                margin: 0 auto;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+
+        </style>
+
+        <script>
+            var trace3 = {
+                x: [],
+                y: [],
+                mode: 'lines+markers'
+            };
+
+            var data = [trace3];
+
+            var layout = {
+                title: 'Coumadin Concentration',
+                xaxis: {
+                    title: 'Date',
+                    showgrid: false,
+                    zeroline: false,
+                    autorange: true,
+                    fixedrange: true
+
+                },
+                yaxis: {
+                    title: 'Concetration (INR)',
+                    showline: false,
+                    fixedrange: true
+                }
+            };
+
+            Plotly.newPlot('myDiv', data); //, layout);
+            $(document).ready(function() {
+
+                $("#logout").click(function() {
+                    firebase.auth().signOut().then(function() {
+                        location.href = "login.html"
+                    }, function(error) {
+                        // An error happened.
+                    });
+
+                });
+
+                var readings = []
+
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        let patientId = sessionStorage.getItem("patient");
+
+                        firebase.database().ref("Users/" + patientId).once('value').then(function(snapshot) {
+
+                            var userData = snapshot.val();
+
+                            $("#name").text(userData.first_name + " " + userData.last_name);
+                            $("#dob").text(userData.dob);
+
+                        });
+
+                        firebase.database().ref("Patients/" + patientId).orderByChild("time").once('value').then(function(snapshot) {
+
+
+
+                            snapshot.forEach(function(child) {
+                                var reading = child.val();
+                                readings.push(reading);
+                                trace3.x.push(reading.time);
+                                trace3.y.push(reading.measurement);
+
+
+                            });
+                            Plotly.newPlot('myDiv', data, layout, {
+                                displayModeBar: false
+                            });
+
+                        });
+
+
+                    }
+                });
+
+            });
+
+
+            //patientrow
+
+        </script>
+
+</body>
+
+</html>

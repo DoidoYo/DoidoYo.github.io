@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<!--
+Twenty by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Twenty by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+
+<body class="index">
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
+            authDomain: "medreporting-3da68.firebaseapp.com",
+            databaseURL: "https://medreporting-3da68.firebaseio.com",
+            projectId: "medreporting-3da68",
+            storageBucket: "medreporting-3da68.appspot.com",
+            messagingSenderId: "212915452033"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollgress.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <style>
+            .pic {
+            background-image: url(images/user.png);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+            var readings = []
+
+
+            firebase.auth().createUserWithEmailAndPassword(makeid() + "@gmail.com", "dfadsfd").catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                alert(errorMessage);
+                // ...
+            });
+
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+
+                    firebase.database().ref('Users/' + user.uid).set({
+                        dob: "02/02/1997",
+                        first_name: "test" + makeid,
+                        last_name: "test",
+                        code: "ZKSO9"
+                    });
+
+                    firebase.database().ref('Physicians/HStXEym3Wjfh8HzrzK5bnl8WshW2/' + user.uid).set({
+                        id: user.uid,
+                    });
+                }
+            });
+
+
+
+
+        });
+
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
+
+
+        //patientrow
+
+    </script>
+
+</body>
+
+</html>

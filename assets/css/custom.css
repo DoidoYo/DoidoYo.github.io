@@ -1,0 +1,88 @@
+@import url("font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,900");
+
+.login {
+    max-width: 600px;
+}
+
+.loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 10px 15px 10px 46px;
+    border: none;
+    text-align: left;
+    white-space: nowrap;
+    text-align: center;
+    max-width: none;
+    width: 100%;
+    
+    font-size: 15pt;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    line-height: 1.75em;
+}
+
+/* Facebook */
+.loginBtn--facebook {
+    background-color: white;
+    color: #3b5998;
+    border: 1px solid #3b5998;
+}
+
+.facebookImg {
+    content: url("../../images/facebook_blue.png");
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 15px;
+    top: 7px;
+}
+
+.loginBtn--facebook:hover img {
+    content: url("../../images/facebookLogin.png");
+}
+
+.loginBtn--facebook:hover {
+    background-color: #3b5998;
+    color: white;
+}
+/* Google */
+.loginBtn--google {
+    /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+    background-color: white;
+    color: #db3236;
+    border: 1px solid #db3236;
+}
+
+.googleImg {
+    content: url("../../images/google_red.png");
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 12px;
+    top: 5px;
+}
+
+.loginBtn--google:hover img {
+    content: url("../../images/googleLogin.png");
+}
+
+.loginBtn--google:hover,
+.loginBtn--google:focus {
+    background-color: #db3236;
+    color: white;
+}
+
+/*Email*/
+.loginBtn--email:before {
+    content: "\2709";
+    font-family: "Glyphicons Envelope";
+    font-size:35px;
+    left: 3px;
+    top: 0px;
+    line-height: 1;
+    margin: 10px;
+    display: inline-block;
+}

@@ -1,0 +1,55 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    height: 90px;
+}
+
+li button {
+    height: 100%;
+    border: none;
+    background-color: white;
+    width: 7em;
+}
+
+li button:hover {
+    background-color: lightgray;
+}
+
+#logo {
+    margin-left: 3em;
+    float: left;
+}
+
+li {
+    vertical-align: middle;
+    float: right;
+    height: 100%;
+}
+
+li:right {
+    margin-right: 3em;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 100%;
+}
+
+li a:hover {
+    background-color: lightgray;
+}
+
+body.index #main {
+    padding-top: 1em;
+}
+
+.xtra {
+    padding: 0;
+}
