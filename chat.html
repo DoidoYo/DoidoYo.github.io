@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<!--
+Twenty by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Twenty by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+
+<body class="index">
+    <div class="box">
+        <div class="row header">
+            <section class="container">
+                <ul>
+                    <li id="logo">
+                        <a href="index.html"><img src="images/logo.png" style="width:110px"></a>
+
+                    </li>
+
+
+                    <li><button id="logout">Log Out</button></li>
+                    <li><button id="settings">Settings</button></li>
+                    <li><button onclick="location.href='index.html';">Patients</button></li>
+                </ul>
+
+            </section>
+        </div>
+        <div class="row content" id="chatdiv" style="background-color: #F4F6FA;padding: 2em; overflow: scroll;">
+
+        </div>
+
+        <style>
+            .space {
+                clear: both;
+                width: 100%;
+                padding: 0px !important;
+                margin: 0px;
+                height: 0px;
+            }
+
+            .received,
+            .sent {
+                position: relative;
+                box-sizing: border-box;
+                border-radius: .4em;
+                margin-top: 1em;
+            }
+
+            .sent {
+                background-color: #5cc9b9;
+                text-align: right;
+                border-bottom-right-radius: 0;
+                float: right;
+            }
+
+            .sent h5 {
+                color: white;
+                text-align: right;
+                line-height: 1.6em;
+                height: 100%;
+                margin-right: 1em;
+                margin-left: 1em;
+                margin-top: .3em;
+                margin-bottom: .3m;
+            }
+
+            .sent:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 0;
+                height: 0;
+                border: 0.688em solid transparent;
+                border-left-color: #5cc9b9;
+                border-right: 0;
+                border-bottom: 0;
+                margin-top: -0.344em;
+                margin-right: -0.687em;
+            }
+
+            .received {
+                border-bottom-left-radius: 0;
+                background-color: lightgray;
+                text-align: left;
+                float: left;
+            }
+
+
+
+            .received h5 {
+                color: white;
+                line-height: 1.6em;
+                height: 100%;
+                margin-right: 1em;
+                margin-left: 1em;
+                margin-top: .3em;
+                margin-bottom: .3m;
+            }
+
+            .received:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 0;
+                height: 0;
+                border: 0.688em solid transparent;
+                border-right-color: lightgray;
+                border-left: 0;
+                border-bottom: 0;
+                margin-top: -0.344em;
+                margin-left: -0.687em;
+            }
+        </style>
+
+        <div class="row footer">
+            <input name="usermsg" type="text" id="msg" placeholder="Type your message here..." style="width: 80%;height: 100%;padding-left: 1em;" />
+            <button id="send" style=" display: inline-block;width: 20%; float: right; text-align: center;background-color: #5cc9b9;color: white; vertical-align: middle;padding: 0;height: 100%;border: 0; ">SEND</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
+            authDomain: "medreporting-3da68.firebaseapp.com",
+            databaseURL: "https://medreporting-3da68.firebaseio.com",
+            projectId: "medreporting-3da68",
+            storageBucket: "medreporting-3da68.appspot.com",
+            messagingSenderId: "212915452033"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <!-- Footer 
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js "></script>
+    <script src="assets/js/jquery.dropotron.min.js "></script>
+    <script src="assets/js/jquery.scrolly.min.js "></script>
+    <script src="assets/js/jquery.scrollgress.min.js "></script>
+    <script src="assets/js/skel.min.js "></script>
+    <script src="assets/js/util.js "></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js "></script><![endif]-->
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0
+        }
+
+        .box {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+
+        .box .row.header {
+            flex: 0 1 auto;
+        }
+
+        .box .row.content {
+            flex: 1 1 auto;
+        }
+
+        .box .row.footer {
+            flex: 0 1 4em;
+        }
+
+        .pic {
+            background-image: url(images/user.png);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .container {
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+            $("#msg").focus()
+            var msgList = [];
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+
+                    let chatId = sessionStorage.getItem("chatId");
+
+                    $('#msg').keydown(function(e) {
+                        if (e.keyCode == 13) {
+                            $("#send").trigger('click');
+                        }
+                    })
+
+
+                    $("#send").click(function() {
+
+                        var ref = firebase.database().ref("Chat/" + chatId).push();
+                        var key = ref.key;
+
+                        msgList.push(key);
+                        ref.set({
+                            id: key,
+                            sender: 1,
+                            text: $("#msg").val()
+                        }, function(err) {
+                            if (err) {
+                                var index = msgList.indexOf(key);
+                                if (index > -1) {
+                                    msgList = msgList.splice(index, 1);
+                                }
+                            } else {
+                                addSent($("#msg").val(), key);
+                                scroll();
+                                $("#msg").val("");
+                            }
+                        });
+
+
+                    });
+
+                    //gets last 20
+                    firebase.database().ref("Chat/" + chatId).limitToLast(20).once("value", function(snapshot) {
+                        snapshot.forEach(function(snap) {
+                            var vals = snap.val();
+                            msgList.push(vals["id"]);
+                            if (vals["sender"] == 0) {
+                                addReceived(vals["text"], vals["id"]);
+                            } else {
+                                addSent(vals["text"], vals["id"]);
+                            }
+
+                        });
+
+                        scroll();
+
+                        //registers event listeners
+                        firebase.database().ref("Chat/" + chatId).limitToLast(1).on("child_added", function(snapshot) {
+                            var vals = snapshot.val();
+
+                            if (msgList.indexOf(vals["id"]) != -1) {
+                                //console.log("exists");
+                            } else {
+                                if (vals["sender"] == 0) {
+                                    addReceived(vals["text"], vals["id"]);
+                                } else {
+                                    addSent(vals["text"], vals["id"]);
+                                }
+                                scroll();
+
+                            }
+
+                        }, function(errorObject) {
+                            console.log("The read failed: " + errorObject.code);
+                        });
+
+                    });
+
+
+
+
+
+                }
+            });
+
+            function processSnaps(snap) {
+
+            }
+
+            function addSent(msg, key) {
+                $("#chatdiv").append("<div class='sent' data='" + key + "'><h5>" + msg + "</h5></div>");
+                $("#chatdiv").append("<div class='space'></div>");
+            }
+
+            function addReceived(msg, key) {
+                $("#chatdiv").append("<div class='received' data='" + key + "'><h5>" + msg + "</h5></div>");
+                $("#chatdiv").append("<div class='space'></div>");
+            }
+
+            function scroll() {
+                $("#chatdiv").animate({
+                    scrollTop: $("#chatdiv")[0].scrollHeight - $("#chatdiv")[0].clientHeight
+                }, 200);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

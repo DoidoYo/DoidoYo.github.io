@@ -34,11 +34,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <section class="wrapper style3 container special xtra">
                 <ul>
                     <li id="logo">
-                        <img src="images/logo.png" style="width:110px">
+                        <a href="index.html"><img src="images/logo.png" style="width:110px"></a>
+
                     </li>
+
 
                     <li><button id="logout">Log Out</button></li>
                     <li><button id="settings">Settings</button></li>
+                    <li><button onclick="location.href='index.html';">Patients</button></li>
                 </ul>
             </section>
             <!-- Three -->
@@ -56,6 +59,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Date of Birth</th>
+                        <th></th>
                     </tr>
                     <tr class="patientrow" id="template" style="position: absolute;
     left: -9999px;">
@@ -65,6 +69,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         <td class="firstname"></td>
                         <td class="lastname"></td>
                         <td class="dob"></td>
+                        <td><img src="images/comments.svg" style="width: 3em;"></td>
                     </tr>
                 </table>
 
@@ -108,7 +113,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 messagingSenderId: "212915452033"
             };
             firebase.initializeApp(config);
-
         </script>
 
 
@@ -124,29 +128,29 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 
     <style>
-            .code {
+        .code {
             text-align: center;
         }
-        
+
         .code h1 {
             text-align: center;
         }
-        
+
         td {
             text-align: center;
             align-content: center;
             vertical-align: middle;
         }
-        
+
         .patientrow {
             height: 100px;
         }
-        
+
         .patientrow:hover {
             background: lightgrey;
             border-radius: 10px;
         }
-        
+
         .pic {
             background-image: url(images/user.png);
             width: 70px;
@@ -156,11 +160,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-
     </style>
 
     <script>
         $(document).ready(function() {
+
+
 
 
             $("#logout").click(function() {
@@ -221,14 +226,35 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                                 $("#patientTable").append(patientHTML);
 
 
+                                patientHTML.find("td").each(function(element) {
 
-                                patientHTML.click(function(event) {
-                                    var id = $(this).attr('id');
-                                    //alert(patients[id].id);
-                                    sessionStorage.setItem("patient", patients[id].id)
+                                    $(this).click(function() {
+                                        var id = patientHTML.attr('id');
+                                        //alert(patients[id].id);
+                                        sessionStorage.setItem("patient", patients[id].id)
 
-                                    window.location.href = "readings.html"
+                                        if (this === patientHTML.find("td:last-child").get(0)) {
+
+
+                                            firebase.database().ref("Users/" + patients[id].id).once('value').then(function(snapshot) {
+
+                                                sessionStorage.setItem("chatId", snapshot.val().chat)
+
+                                                window.location.href = "chat.html";
+                                            });
+
+                                        } else {
+                                            window.location.href = "readings.html";
+
+                                        }
+
+                                    });
+
                                 });
+
+
+
+
 
 
 
@@ -250,7 +276,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 
         //patientrow
-
     </script>
 
 </body>

@@ -27,11 +27,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <section class="wrapper style3 container special xtra">
                 <ul>
                     <li id="logo">
-                        <img src="images/logo.png" style="width:110px">
+                        <a href="index.html"><img src="images/logo.png" style="width:110px"></a>
+
                     </li>
+
 
                     <li><button id="logout">Log Out</button></li>
                     <li><button id="settings">Settings</button></li>
+                    <li><button onclick="location.href='index.html';">Patients</button></li>
                 </ul>
             </section>
             <section class="wrapper style3 container special">
@@ -69,7 +72,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 messagingSenderId: "212915452033"
             };
             firebase.initializeApp(config);
-
         </script>
         <!-- Footer 
 
@@ -86,7 +88,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
         <style>
-                .pic {
+            .pic {
                 background-image: url(images/user.png);
                 width: 70px;
                 height: 70px;
@@ -95,7 +97,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: cover;
-
+            }
         </style>
 
         <script>
@@ -141,35 +143,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 firebase.auth().onAuthStateChanged(function(user) {
                     if (user) {
                         let patientId = sessionStorage.getItem("patient");
-
                         firebase.database().ref("Users/" + patientId).once('value').then(function(snapshot) {
-
                             var userData = snapshot.val();
-
                             $("#name").text(userData.first_name + " " + userData.last_name);
                             $("#dob").text(userData.dob);
-
                         });
-
                         firebase.database().ref("Patients/" + patientId).orderByChild("time").once('value').then(function(snapshot) {
-
-
-
                             snapshot.forEach(function(child) {
                                 var reading = child.val();
                                 readings.push(reading);
                                 trace3.x.push(reading.time);
                                 trace3.y.push(reading.measurement);
-
-
                             });
                             Plotly.newPlot('myDiv', data, layout, {
                                 displayModeBar: false
                             });
-
                         });
-
-
                     }
                 });
 
@@ -177,7 +166,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 
             //patientrow
-
         </script>
 
 </body>
