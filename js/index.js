@@ -11,18 +11,7 @@ $('.ajax').click(function () {
 })
 
 $(document).ready(function () {
-
-
     loadPage("patients.html");
-
-
-
-
-
-
-
-
-
 });
 
 function navClick(item) {
@@ -48,3 +37,16 @@ function loadPage(path) {
         //        }, "", path);
     });
 }
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        firebase.database().ref("Users/" + user.uid).once('value').then(function (snapshot) {
+            console.log(snapshot.val());
+            var val = snapshot.val();
+            $("#dname").text(val.first_name + " " + val.last_name);
+            $("#code").text("Physician Code: " + val.code);
+            //TODO LOAD PICTURE
+        });
+    }
+});

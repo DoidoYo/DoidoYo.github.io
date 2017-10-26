@@ -85,35 +85,6 @@ $(document).ready(function () {
                         $("#patientTable tbody").append(patientHTML);
 
 
-                        //                        patientHTML.find("td").each(function (element) {
-                        //
-                        //                            $(this).click(function () {
-                        //                                var id = patientHTML.attr('id');
-                        //                                //alert(patients[id].id);
-                        //                                sessionStorage.setItem("patient", patients[id].id)
-                        //
-                        //                                if (this === patientHTML.find("td:last-child").get(0)) {
-                        //
-                        //
-                        //                                    firebase.database().ref("Users/" + patients[id].id).once('value').then(function (snapshot) {
-                        //
-                        //                                        sessionStorage.setItem("chatId", snapshot.val().chat)
-                        //
-                        //                                        window.location.href = "chat.html";
-                        //                                    });
-                        //
-                        //                                } else {
-                        //                                    //window.location.href = "readings.html";
-                        //
-                        //                                }
-                        //
-                        //                            });
-                        //
-                        //                        });
-
-
-
-
 
 
 

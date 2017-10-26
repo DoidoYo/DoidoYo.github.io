@@ -111,10 +111,12 @@ $("#sendbtn").click(function () {
     var key = ref.key;
 
     msgList.push(key);
+    var time = (new Date()).getTime();
     ref.set({
         id: key,
         sender: 1,
-        text: $("#text").val()
+        text: $("#text").val(),
+        time: time
     }, function (err) {
         if (err) {
             var index = msgList.indexOf(key);
@@ -122,7 +124,7 @@ $("#sendbtn").click(function () {
                 msgList = msgList.splice(index, 1);
             }
         } else {
-            addSent($("#text").val(), key);
+            addSent($("#text").val(), time, key);
             scroll();
             $("#text").val("");
         }
@@ -153,9 +155,9 @@ function openChat(patient) {
                 var vals = snap.val();
                 msgList.push(vals["id"]);
                 if (vals["sender"] == 0) {
-                    addReceived(vals["text"], vals["id"]);
+                    addReceived(vals["text"], vals["time"], vals["id"]);
                 } else {
-                    addSent(vals["text"], vals["id"]);
+                    addSent(vals["text"], vals["time"], vals["id"]);
                 }
 
             });
@@ -171,9 +173,9 @@ function openChat(patient) {
                     //console.log("exists");
                 } else {
                     if (vals["sender"] == 0) {
-                        addReceived(vals["text"], vals["id"]);
+                        addReceived(vals["text"], vals["time"], vals["id"]);
                     } else {
-                        addSent(vals["text"], vals["id"]);
+                        addSent(vals["text"], vals["time"], vals["id"]);
                     }
                     scroll();
 
@@ -194,20 +196,20 @@ function openChat(patient) {
 
 }
 
-function addSent(msg, key) {
+function addSent(msg, time, key) {
     let msgo = msgTemplate.clone();
     msgo.addClass("right");
     msgo.find(".datetime").removeClass("pull-left").addClass("pull-right");
-    addMsg(msg, msgo);
+    addMsg(msg, time, msgo);
 }
 
-function addReceived(msg, key) {
+function addReceived(msg, time, key) {
     let msgo = msgTemplate.clone();
-    addMsg(msg, msgo);
+    addMsg(msg, time, msgo);
 }
 
-function addMsg(msg, obj) {
-    obj.find(".datetime").text("");
+function addMsg(msg, time, obj) {
+    obj.find(".datetime").text(moment(parseInt(time)).format("llll"));
     obj.find(".text").text(msg);
     obj.attr("id", "");
     obj.show();
