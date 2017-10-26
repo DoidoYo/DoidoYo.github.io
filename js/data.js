@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
         if (lastKey == null) {
-            firebase.database().ref("Patients/" + patient.id).orderByKey().limitToFirst(20).once('value').then(function (snapshot) {
+            firebase.database().ref("Patients/" + patient.id).orderByChild("time").limitToFirst(20).once('value').then(function (snapshot) {
                 snapshot.forEach(function (child) {
                     lastKey = child.key;
 
@@ -60,14 +60,12 @@ firebase.auth().onAuthStateChanged(function (user) {
                     if (data[i].type == 1) {
                         var mom = moment(parseInt(data[i].time));
                         var dot = {
-                            date: mom.format("L"),
+                            date: parseInt(data[i].time),
                             value: data[i].measurement
                         };
                         cdata.push(dot);
                     }
                 }
-
-
                 new Morris.Line({
                     // ID of the element in which to draw the chart.
                     element: 'chart',
