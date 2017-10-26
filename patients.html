@@ -1,0 +1,89 @@
+<section class="content-header">
+    <h1>
+        Patients
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Patients</li>
+    </ol>
+
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+    <div class="box">
+        <div class="box-body">
+            <div class="dataTables_wrapper form-inline st-bootstrap">
+                <div class="row" style="margin: 1em 0;">
+                    <div class="col-sm-4">
+                        <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label></div>
+                    </div>
+                    <div class="col-sm-4" style="text-align: center;">
+                        <div class="dataTables_length"><label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-block btn-primary addpatbtn"><i class="fa fa-user-plus"></i>Add Patient</button>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="patientTable" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr role="row">
+                                    <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;"></th>
+                                    <th tabindex="0" rowspan="1" colspan="1" style="width: 100px;">Last Name</th>
+                                    <th tabindex="0" rowspan="1" colspan="1" style="width: 100px;">First Name</th>
+                                    <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;">Date of Birth</th>
+                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 58px;">Status</th>
+                                    <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;"></th>
+                                    <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                                <tr role="row" id="template" style="display: none;">
+                                    <td>
+                                        <div class="pull-left cimage">
+                                            <img src="img/user.png" class="img-circle patImg" alt="User Image">
+                                        </div>
+                                    </td>
+                                    <td class="firstname">Fernandes</td>
+                                    <td class="lastname">Gabriel</td>
+                                    <td class="dob">03/04/1998</td>
+                                    <td class="status"><span class="label label-success">READY</span></td>
+                                    <td>
+                                        <button type="button" id="data" class="btn btn-block btn-warning editbtn"><i class="fa fa-list-ul"></i>Data</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" id="edit" class="btn btn-block btn-primary editbtn"><i class="fa fa-edit"></i>Edit</button>
+                                    </td>
+                                </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="showing">Showing 1 to 10 of 57 entries</div>
+                </div>
+                <div class="row" style="text-align: center;">
+                    <ul class="pagination">
+                        <li class="paginate_button previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li>
+                        <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+                        <li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script src="js/patients.js"></script>

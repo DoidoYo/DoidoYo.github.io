@@ -1,283 +1,288 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <!--
-Twenty by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
-
 <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Twenty by HTML5 UP</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Curem</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="css/index.css">
 
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+    <link rel="stylesheet" href="plugins/pace/pace.min.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
-<body class="index">
-    <div id="page-wrapper">
-
-        <!-- Header -->
-
-
-
-
-
-        <!-- Main -->
-        <article id="main">
-            <section class="wrapper style3 container special xtra">
-                <ul>
-                    <li id="logo">
-                        <a href="index.html"><img src="images/logo.png" style="width:110px"></a>
-
-                    </li>
-
-
-                    <li><button id="logout">Log Out</button></li>
-                    <li><button id="settings">Settings</button></li>
-                    <li><button onclick="location.href='index.html';">Patients</button></li>
-                </ul>
-            </section>
-            <!-- Three -->
-            <section class="wrapper style3 container special">
-
-                <header class="major">
-                    <h2>
-                        <!--[-->
-                        <!--]--><strong><!--[-->Patients<!--]--></strong></h2>
-                </header>
-
-                <table id="patientTable" style="width:100%">
-                    <tr>
-                        <th></th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Date of Birth</th>
-                        <th></th>
-                    </tr>
-                    <tr class="patientrow" id="template" style="position: absolute;
-    left: -9999px;">
-                        <td>
-                            <div class="pic"></div>
-                        </td>
-                        <td class="firstname"></td>
-                        <td class="lastname"></td>
-                        <td class="dob"></td>
-                        <td><img src="images/comments.svg" style="width: 3em;"></td>
-                    </tr>
-                </table>
-
-
-                <!--
-                    <footer class="major">
-                        <ul class="buttons">
-                            <li><a href="#" class="button">See More</a></li>
-                        </ul>
-                    </footer>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
 -->
 
-            </section>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
 
-            <section class="wrapper style3 container special">
-                <header class="major">
-                    <h3>
-                        <!--[-->
-                        <!--]--><strong><!--[-->Adding Patients<!--]--></strong></h3>
-                </header>
-                <div class="row code">
+        <!-- Main Header -->
+        <header class="main-header fixed">
 
-                    <h1>Physician Code: </h1>
-                    <h1 id="code"></h1>
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Curem</b>WEB</span>
+            </a>
+
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+
+                        <!-- Notifications Menu -->
+                        <li class="dropdown notifications-menu">
+                            <!-- Menu toggle button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- Inner Menu: contains the notifications -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start notification -->
+                                            <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                                        </li>
+                                        <!-- end notification -->
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!--                        Sign Out stuff -- TODO-->
+
+                        <li class="dropdown notifications-menu">
+                            <!-- Menu toggle button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="logout">
+              <i class="fa fa-sign-out"></i>
+            </a>
+                            <!--                            TODO -- modal to confirm logout -->
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
                 </div>
-                <p>Give your patients the code above. After they create their account, they will appear in your list of patients above. Can't see your patient? Click Here</p>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar fixed">
+
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="img/user.png" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Alexander Pierce</p>
+                        <!-- Status -->
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+
+                <!-- /.search form -->
+
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <!--                    <li class="header">HEADER</li>-->
+                    <!-- Optionally, you can add icons to the links -->
+                    <li class="active"><a href="#" onclick="navClick(this)" data-url="patients.html"><i class="fa fa-users"></i> <span>Patients</span></a></li>
+                    <li class=""><a href="#" onclick="navClick(this)" data-url="messages.html"><i class="fa fa-wechat "></i> <span>Messages</span></a></li>
+
+                </ul>
+                <!-- /.sidebar-menu -->
             </section>
+            <!-- /.sidebar -->
+        </aside>
 
-        </article>
+        <!-- Content Wrapper. Contains page content -->
+        <div id="main" class="content-wrapper">
+            <!-- Content Header (Page header) -->
 
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
 
-        <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
-        <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
-                authDomain: "medreporting-3da68.firebaseapp.com",
-                databaseURL: "https://medreporting-3da68.firebaseio.com",
-                projectId: "medreporting-3da68",
-                storageBucket: "medreporting-3da68.appspot.com",
-                messagingSenderId: "212915452033"
-            };
-            firebase.initializeApp(config);
-        </script>
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Sponsored by <strong><a href="#">Johns Hopkins University</a></strong>
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2017 <a href="#">Curem</a>.</strong> All rights reserved.
+        </footer>
 
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane active" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Recent Activity</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:;">
+              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                <p>Will be 23 on April 24th</p>
+              </div>
+            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:;">
+                                <h4 class="control-sidebar-subheading">
+                                    Custom Template Design
+                                    <span class="pull-right-container">
+                    <span class="label label-danger pull-right">70%</span>
+                                    </span>
+                                </h4>
+
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+              Report panel usage
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
     </div>
+    <!-- ./wrapper -->
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.scrollgress.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-
-    <style>
-        .code {
-            text-align: center;
-        }
-
-        .code h1 {
-            text-align: center;
-        }
-
-        td {
-            text-align: center;
-            align-content: center;
-            vertical-align: middle;
-        }
-
-        .patientrow {
-            height: 100px;
-        }
-
-        .patientrow:hover {
-            background: lightgrey;
-            border-radius: 10px;
-        }
-
-        .pic {
-            background-image: url(images/user.png);
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            margin: 0 auto;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-    </style>
-
+    <!-- REQUIRED JS SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
     <script>
-        $(document).ready(function() {
-
-
-
-
-            $("#logout").click(function() {
-                firebase.auth().signOut().then(function() {
-                    location.href = "login.html"
-                }, function(error) {
-                    // An error happened.
-                });
-
-            });
-
-            var patients = []
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-
-
-
-                    //set physician code
-                    firebase.database().ref("Users/" + user.uid).once('value').then(function(snapshot) {
-                        $("#code").text(snapshot.val().code);
-                    });
-
-                    //get patients
-                    firebase.database().ref("Physicians/" + user.uid).once('value').then(function(snapshot) {
-                        snapshot.forEach(function(child) {
-
-                            patients.forEach(function(item) {
-                                var iid = new String(item.id);
-                                var oid = new String(patient.id);
-
-                                if (iid === oid) {
-                                    console.log("YES");
-                                }
-                            });
-
-                            firebase.database().ref("Users/" + child.val().id).once('value').then(function(snapshot) {
-
-                                var val = snapshot.val();
-                                var patient = {
-                                    dob: val.dob,
-                                    first_name: val.first_name,
-                                    last_name: val.last_name,
-                                    id: child.val().id
-                                };
-
-
-                                patients.push(patient);
-                                var patientIndex = patients.indexOf(patient);
-
-
-                                let patientHTML = $("#template").clone();
-                                patientHTML.attr('id', patientIndex);
-                                patientHTML.css("position", "relative");
-                                patientHTML.find(".firstname").text(patient.first_name);
-                                patientHTML.find(".lastname").text(patient.last_name);
-                                patientHTML.find(".dob").text(patient.dob);
-
-                                $("#patientTable").append(patientHTML);
-
-
-                                patientHTML.find("td").each(function(element) {
-
-                                    $(this).click(function() {
-                                        var id = patientHTML.attr('id');
-                                        //alert(patients[id].id);
-                                        sessionStorage.setItem("patient", patients[id].id)
-
-                                        if (this === patientHTML.find("td:last-child").get(0)) {
-
-
-                                            firebase.database().ref("Users/" + patients[id].id).once('value').then(function(snapshot) {
-
-                                                sessionStorage.setItem("chatId", snapshot.val().chat)
-
-                                                window.location.href = "chat.html";
-                                            });
-
-                                        } else {
-                                            window.location.href = "readings.html";
-
-                                        }
-
-                                    });
-
-                                });
-
-
-
-
-
-
-
-                            });
-                        });
-
-                        //                        for item in snapshot.val() {
-                        //                            console.log(item);
-                        //                        }
-                    });
-
-
-                } else {
-                    location.href = "login.html"
-                }
-            });
-
-        });
-
-
-        //patientrow
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
+            authDomain: "medreporting-3da68.firebaseapp.com",
+            databaseURL: "https://medreporting-3da68.firebaseio.com",
+            projectId: "medreporting-3da68",
+            storageBucket: "medreporting-3da68.appspot.com",
+            messagingSenderId: "212915452033"
+        };
+        firebase.initializeApp(config);
     </script>
+    <!-- jQuery 3 -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
 
+    <script src="bower_components/PACE/pace.min.js"></script>
+
+    <!--    GRAPHING MORRIS-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
+    <script src="js/libs/moment-with-locales.js"></script>
+    <script src="js/index.js"></script>
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
-
 </html>

@@ -1,0 +1,76 @@
+<section class="content-header">
+    <h1>
+        Messages
+        <small>2 new</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Messages</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid full">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="box">
+                <button type="button" class="btn btn-block btn-info"><i class="fa fa-plus" style="margin-right: .5em;"></i>New Chat</button>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Search" style="text-align: center;">
+
+                <table class="table" id="msgtable">
+                    <tbody>
+<tr class="" id="chatTemplate" style="display: none;">
+    <td class="not"><span class="label label-info newmsg"></span></td>
+    <td class="pic">
+        <div class="pull-left cimage">
+            <img src="../../dist/img/user2-160x160.jpg" class="img-circle patImg" alt="User Image">
+        </div>
+    </td>
+    <td class="preview">
+        <h5><strong class="name">Gabriel Fernandes</strong></h5>
+        <h5 class="lastmsg">Hey what are you? tell me ild work suck a niggas dick or something</h5>
+    </td>
+</tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="box box-solid box-info direct-chat direct-chat-info chatboxtemplate">
+                <div class="box-header with-border">
+                    <h3 class="box-title name"></h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <!-- Conversations are loaded here -->
+                    <div class="direct-chat-messages">
+                        <!-- Message. Default to the left -->
+                        <div class="direct-chat-msg" id="msgtemplate" style="display: none;">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-timestamp pull-left datetime">23 Jan 2:00 pm</span>
+                            </div>
+                            <!-- /.direct-chat-img -->
+                            <div class="direct-chat-text text">
+                                Is this template really for free? That's unbelievable!
+                            </div>
+                            <!-- /.direct-chat-text -->
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="input-group">
+                        <input id="text" type="text" name="message" placeholder="Type Message ..." class="form-control">
+                        <span class="input-group-btn">
+                <button id="sendbtn" type="button" class="btn btn-info btn-flat">Send</button>
+                </span>
+                    </div>
+                </div>
+                <!--/.direct-chat -->
+            </div>
+        </div>
+
+</section>
+
+<script src="js/messages.js"></script>

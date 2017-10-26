@@ -1,0 +1,140 @@
+#patientTable tr:hover {}
+
+#patientTable,
+#patientTable th {
+    text-align: center
+}
+
+#patientTable td {
+    vertical-align: middle;
+}
+
+.patImg {
+    width: 50px;
+
+}
+
+.cimage {
+    width: 100%;
+    text-align: center;
+}
+
+
+.center {
+    text-align: center;
+}
+
+.editbtn {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.editbtn i,
+.addpatbtn i {
+    margin-right: 10px;
+}
+
+
+.addpatbtn {
+    float: right;
+    width: 10em;
+}
+
+/*chat*/
+
+.cactive {
+    background-color: #d2d6de;
+}
+
+#msgtable td {
+    vertical-align: middle;
+}
+
+#msgtable tr:hover {
+    background-color: #d2d6de;
+}
+
+#msgtable tr {
+    cursor: pointer;
+}
+
+.not {
+    width: 10%;
+    text-align: center;
+}
+
+.pic {
+    width: 20%;
+    text-align: center;
+}
+
+.preview {
+    widows: 70%;
+}
+
+.preview h5:first-child {
+    margin-bottom: .5em;
+}
+
+.preview h5 {
+    margin: 0;
+    overflow: hidden;
+    word-wrap: normal;
+    max-height: 1em;
+}
+
+.direct-chat-text {
+    float: left;
+    margin: .5em;
+}
+
+.right .direct-chat-text {
+    float: right;
+    margin: .5em;
+}
+
+.full {
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+    height: calc(100% - 150px);
+}
+
+.full .row,
+.full .col-sm-8,
+.full .col-sm-4,
+.full .col-sm-4 .box,
+.full .col-sm-8 .box {
+    height: 100%;
+}
+
+.full .col-sm-8 .box {
+    display: flex;
+    flex-direction: column;
+}
+
+.full .col-sm-8 .box-header {
+    text-align: center;
+}
+
+.full .col-sm-8 .direct-chat-messages {
+    height: auto;
+}
+
+.full .col-sm-8 .direct-chat-msg {
+    margin: 0;
+}
+
+.full .col-sm-8 .box-body {
+    flex-grow: 1;
+}
+
+.pill {
+    width: 30px;
+}
+
+.pillTable,
+.pillTable th {
+    text-align: center;
+}

@@ -1,0 +1,115 @@
+<section class="content-header" style="display: flex;">
+
+
+    <div style="margin-left: 15px;"><button type="button" id="edit" class="btn btn-block btn-primary editbtn"><i class="fa fa-arrow-left"></i>Back</button>
+
+    </div>
+
+
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Data</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+    <div class="col-sm-2">
+        <div class="box box-primary">
+            <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="img/user.png" alt="User profile picture">
+
+                <h3 class="profile-username text-center">Gabriel Fernandes</h3>
+
+                <!--                <p class="text-muted text-center">03/04/1998</p>-->
+
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>Birth</b> <a class="pull-right" id="dob">03/04/1998</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Sex</b> <a class="pull-right" id="sex">Male</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Phone</b> <a class="pull-right" id="phone">(305) 332-8794</a>
+                    </li>
+                </ul>
+
+                <a href="#" class="btn btn-info btn-block"><i class="fa fa-wechat" style="margin-right: .5em;"></i><b>Chat</b></a>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+
+
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Cumadin</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered pillTable">
+                            <thead>
+
+                                <tr>
+                                    <th style="width: 30px"></th>
+                                    <th>Action</th>
+                                    <th>Dose</th>
+                                    <th>Time</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr style="display:none;" id="pill">
+                                    <td>
+                                        <img class="pill" src="img/pill.svg">
+                                    </td>
+                                    <td><span class="label label-primary">CONSUMPTION</span></td>
+                                    <td id="dose">5 ul </td>
+                                    <td id="time">5:00 PM</td>
+                                    <td id="date">03/04/2017</td>
+                                </tr>
+                                <tr style="display:none;" id="reading">
+                                    <td>
+                                        <img class="pill" src="img/volt.svg">
+                                    </td>
+                                    <td><span class="label label-success">READING</span></td>
+                                    <td id="dose">5 ul </td>
+                                    <td id="time">5:00 PM</td>
+                                    <td id="date">03/04/2017</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="box-footer clearfix">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            <li><a href="#">«</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Readings</h3>
+                    </div>
+                    <div class="box-body chart-responsive" id="chart" style="height: 30em;">
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script src="js/data.js"></script>
