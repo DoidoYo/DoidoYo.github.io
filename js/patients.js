@@ -152,6 +152,8 @@ $(document).ready(function () {
                             first_name: val.first_name,
                             last_name: val.last_name,
                             id: child.val().id
+                            sex: val.sex,
+                            phone: val.phone
                         };
 
 
