@@ -7,8 +7,13 @@ $(document).ready(function () {
     });
 
     $("#dob").text(patient.dob);
-    $("#sex").text("N/A");
-    $("#phone").text("N/A");
+    if (patient.sex != null) {
+        $("#sex").text(patient.sex);
+    }
+    if (patient.phone != null) {
+        $("#phone").text(patient.phone);
+    }
+
 
 });
 
