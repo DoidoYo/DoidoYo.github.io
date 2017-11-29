@@ -15,7 +15,7 @@ $(document).ready(function () {
 });
 
 function navClick(item) {
-    let url = $(item).attr("data-url");
+    var url = $(item).attr("data-url");
 
     //remove active from previous
     $(".sidebar").find(".active").removeClass("active");

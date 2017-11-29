@@ -147,11 +147,12 @@ $(document).ready(function () {
                     firebase.database().ref("Users/" + child.val().id).once('value').then(function (snapshot) {
 
                         var val = snapshot.val();
+                        console.log(val);
                         var patient = {
                             dob: val.dob,
                             first_name: val.first_name,
                             last_name: val.last_name,
-                            id: child.val().id
+                            id: child.val().id,
                             sex: val.sex,
                             phone: val.phone
                         };
