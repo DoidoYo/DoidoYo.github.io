@@ -46,7 +46,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                         html.find("#dose").text(single.measurement + " mg");
                     } else {
                         html = $("#reading").clone().show();
-                        html.find("#dose").text(single.measurement + " ul");
+                        html.find("#dose").text(single.measurement + " ng/mL");
                     }
 
                     var mom = moment(parseInt(single.time));
