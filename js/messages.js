@@ -33,6 +33,14 @@ $(document).ready(function () {
                         tempChat.attr("data-index", chatId);
                         tempChat.show();
 
+                        var pat = {
+                            id: patId,
+                            chat: chatId,
+                            first_name: fname,
+                            last_name: lname,
+                            last_msg: ""
+                        };
+
                         tempChat.click(function (item) {
                             $(".cactive").removeClass("cactive");
                             $(this).addClass("cactive");
@@ -45,6 +53,7 @@ $(document).ready(function () {
                             }
                             if (!found) {
                                 $(".chatboxtemplate").find(".direct-chat-messages").empty();
+                                openChat(chats[i]);
                             }
 
                         });
@@ -52,10 +61,10 @@ $(document).ready(function () {
 
                         firebase.database().ref("Chat/" + chatId).limitToLast(1).once('value').then(function (snapshot) {
                             //add items to list
-                            console.log("called");
-                            console.log("called");
 
-
+                            if (snapshot.val() == null) {
+                                chats.push(pat);
+                            }
 
 
                             snapshot.forEach(function (snap, index) {
