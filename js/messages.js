@@ -27,8 +27,37 @@ $(document).ready(function () {
                         let fname = snapshot.val().first_name;
                         let lname = snapshot.val().last_name;
 
+                        //show chat
+                        let tempChat = $("#chatTemplate").clone();
+                        tempChat.find(".name").text(fname + " " + lname);
+                        tempChat.attr("data-index", chatId);
+                        tempChat.show();
+
+                        tempChat.click(function (item) {
+                            $(".cactive").removeClass("cactive");
+                            $(this).addClass("cactive");
+                            var found = false;
+                            for (var i = 0; i < chats.length; i++) {
+                                if (chats[i].chat == $(this).attr("data-index")) {
+                                    found = true;
+                                    openChat(chats[i]);
+                                }
+                            }
+                            if (!found) {
+                                $(".chatboxtemplate").find(".direct-chat-messages").empty();
+                            }
+
+                        });
+                        $("#msgtable tbody").append(tempChat);
+
                         firebase.database().ref("Chat/" + chatId).limitToLast(1).once('value').then(function (snapshot) {
                             //add items to list
+                            console.log("called");
+                            console.log("called");
+
+
+
+
                             snapshot.forEach(function (snap, index) {
                                 //console.log(snap.val().text);
 
@@ -41,31 +70,21 @@ $(document).ready(function () {
                                 };
 
                                 //add html
-                                let tempChat = $("#chatTemplate").clone();
-                                tempChat.find(".name").text(pat.first_name + " " + pat.last_name);
                                 tempChat.find(".newmsg").text(""); //set new msg number
                                 tempChat.find(".lastmsg").text(pat.last_msg);
-                                tempChat.attr("data-index", pat.chat);
 
-                                tempChat.show();
+                                //                                tempChat.click(function (item) {
+                                //                                    $(".cactive").removeClass("cactive");
+                                //                                    $(this).addClass("cactive");
+                                //                                    for (var i = 0; i < chats.length; i++) {
+                                //                                        if (chats[i].chat == $(this).attr("data-index")) {
+                                //                                            openChat(chats[i]);
+                                //                                        }
+                                //                                    }
+                                //
+                                //                                });
 
-
-                                tempChat.click(function (item) {
-
-                                    $(".cactive").removeClass("cactive");
-
-                                    $(this).addClass("cactive");
-
-                                    for (var i = 0; i < chats.length; i++) {
-                                        if (chats[i].chat == $(this).attr("data-index")) {
-                                            openChat(chats[i]);
-                                        }
-                                    }
-
-
-                                });
-
-                                $("#msgtable tbody").append(tempChat);
+                                //                                $("#msgtable tbody").append(tempChat);
                                 chats.push(pat);
 
                                 if (first) {

@@ -36,25 +36,47 @@
         </div>
 
         <div class="register-box-body">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Register a new account</p>
 
             <form action="../../index.html" method="post">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Full name">
+                    <input type="text" class="form-control" placeholder="First Name" id="first">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="Last Name" id="last">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <div class="input-group date" style="width: 100%">
+
+                        <input type="text" class="form-control pull-right" data-provide="datepicker" id="datepicker" placeholder="Date of Birth">
+                        <span class="fa fa-calendar form-control-feedback"></span>
+                    </div>
+                    <!-- /.input group -->
+                </div>
+                <div class="form-group">
+                    <div class="input-group" style="width: 100%">
+                        <input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;(999) 999-9999&quot;" data-mask="" id="phone" placeholder="Phone Number">
+
+                        <span class="fa fa-phone form-control-feedback"></span>
+                    </div>
+                    <!-- /.input group -->
+                </div>
+                <hr>
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" placeholder="Email" id="email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" id="password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Retype password">
-                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                    <input type="password" class="form-control" placeholder="Retype password" id="apassword">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
@@ -65,11 +87,12 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                        <button type="button" id="registerbtn" class="btn btn-primary btn-block btn-flat">Register</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
+            <hr>
 
 
             <a href="login.html" class="text-center">I already have a membership</a>
@@ -78,12 +101,27 @@
     </div>
     <!-- /.register-box -->
 
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDkuPbe_TKLY_5e6vlJJTdKYM-svq092JA",
+            authDomain: "medreporting-3da68.firebaseapp.com",
+            databaseURL: "https://medreporting-3da68.firebaseio.com",
+            projectId: "medreporting-3da68",
+            storageBucket: "medreporting-3da68.appspot.com",
+            messagingSenderId: "212915452033"
+        };
+        firebase.initializeApp(config);
+    </script>
     <!-- jQuery 3 -->
     <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="../../plugins/iCheck/icheck.min.js"></script>
+
     <script>
         $(function() {
             $('input').iCheck({
@@ -93,6 +131,39 @@
             });
         });
 
+        $(document).ready(function() {
+            //            $('#datepicker').inputmask('mm/dd/yyyy', { // 'placeholder': 'mm/dd/yyyy' // }) // $('[data-mask]').inputmask();
+
+            $("#registerbtn").click(function() {
+                firebase.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                    // ...
+                });
+
+                console.log($("#email").val());
+
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+
+                        firebase.database().ref('Users/' + user.uid).set({
+                            dob: $("#datepicker").val(),
+                            first_name: $("#first").val(),
+                            last_name: $("#last").val(),
+                            chat: "",
+                            doc: "",
+                            phone: $("#phone").val(),
+                            sex: "N/A"
+                        }, function() {
+                            location.href = "index.html";
+                        });
+                    }
+                });
+            });
+
+        });
     </script>
 </body>
 

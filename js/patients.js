@@ -110,17 +110,18 @@ $(document).ready(function () {
     })
     $('[data-mask]').inputmask();
 
-    firebase.auth().signInWithEmailAndPassword("doc@gmail.com", "test123").catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-    });
+    //    firebase.auth().signInWithEmailAndPassword("doc@gmail.com", "test123").catch(function (error) {
+    //        // Handle Errors here.
+    //        var errorCode = error.code;
+    //        var errorMessage = error.message;
+    //        // ...
+    //    });
     var patients = []
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
 
             user_iud = user.uid;
+            console.log(user_iud);
             //set physician code
             firebase.database().ref("Users/" + user.uid).once('value').then(function (snapshot) {
                 $("#code").text(snapshot.val().code);
